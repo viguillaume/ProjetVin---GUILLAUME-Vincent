@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ProjetMetier
@@ -17,25 +18,35 @@ namespace ProjetMetier
 
         public void AjouterCave(string unNomDeCave,List<Bouteille> lesBouteillesDeLaCave)
         {
-            // A vous de jouer
+            lesCaves.Add(unNomDeCave, lesBouteillesDeLaCave);
         }
 
         public int NbBouteilles(string unNomDeCave)
         {
-            // A vous de jouer
-            return 0;
+            return lesCaves[unNomDeCave].Count;
         }
 
         public int NbBouteillesDeRouges(string unNomDeCave)
         {
-            // A vous de jouer
-            return 0;
+            int nb=0;
+            foreach (Bouteille b in lesCaves[unNomDeCave])
+            {
+                if (b.LeVin.LaCouleur.NomCouleur.CompareTo("Rouge") == 0)
+                {
+                    nb++;
+                } 
+            }
+            return nb;
         }
 
         public double ValeurDeLaCave(string unNomDeCave)
         {
-            // A vous de jouer
-            return 0;
+            double prixTt = 0;
+            foreach (Bouteille b in lesCaves[unNomDeCave])
+            {
+                prixTt = b.LeVin.PrixDuVin + prixTt;
+            }
+            return prixTt;
         }
     }
 }
